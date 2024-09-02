@@ -18,30 +18,18 @@ app.use((req, res, next) => {
 });
 
 app.get('/favicon.ico', (req, res) => res.status(204));
+
+// app health Check API
 app.get('/healthCheck',async (req,res)=>{
     const data = await URL.find({});
     console.log(data)
     return res.end("Site Works");
 })
+
+// Middleware to count of url clicks
 app.use('/',middlewareRoute );
-// app.get('/:shortId', async (req, res) => {
-//     console.log('This is a middleware layer!', req.url);
-//     const shortId = req.params.shortId;
-//     console.log(shortId)
-//     // const entry = 
-//     let visitHistory = {shortId:req.params.shortId, timeStamp : Date.now()}
-//     await URL.findOneAndUpdate({ shortId, }, {
-//         $push: {
-//             visitHistory: visitHistory,
-//         },upsert:true,  
-//         $inc:{
-//             clicks:1
-//         }
-//     }).then(entry=>{
-//         return res.redirect(entry.redirectURL)
-//     })
-    
-// })
+
+// Route for url handle apis
 app.use("/url", urlRoute);
 
 

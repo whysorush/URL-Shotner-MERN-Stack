@@ -48,7 +48,7 @@ const handleGetAllAnalytics = async (req, res) => {
   //   `);
 };
 module.exports = {
-    handleGetAllAnalytics,
+  handleGetAllAnalytics,
   handleGenrateShortUrl,
   handleGetAnalyticsById,
 };
