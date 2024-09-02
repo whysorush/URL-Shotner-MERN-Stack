@@ -21,13 +21,13 @@ const CreateUser = () => {
     <div>
       <h1>Create User</h1>
       <form onSubmit={handleSubmit}>
-        <label>Enter Url to short:</label>
+        <label>Enter Url to short : </label>
         <br></br>
         <input type="text" name="url" required />
         <br></br>
         <button>Submit</button>
         <div>{!shortUrl?"":
-          <label>Short URL is:- <a href={shortUrl}>{shortUrl}</a></label>
+          <label>Short URL is :  <a href={shortUrl}>{shortUrl}</a></label>
         }
         </div>
       </form>
