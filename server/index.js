@@ -7,7 +7,9 @@ const middlewareRoute = require('./routes/middlewear');
 const { connectDb } = require('./connection');
 const URL = require('./models/url')
 
-connectDb("mongodb://127.0.0.1:27017/shortUrl").then(() => console.log("Mongo connected"));
+connectDb("mongodb://127.0.0.1:27017/shortUrl").then(() => {
+    console.log("Mongo connected")
+});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
