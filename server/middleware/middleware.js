@@ -4,8 +4,7 @@ const URL = require('../models/url')
 const handleClickCounts = async (req,res)=>{
     console.log('This is a middleware layer!', req.url);
     const shortId = req.params.shortId;
-    console.log(shortId)
-    // const entry = 
+    console.log(shortId,"<<<<<< clicked id")
     let visitHistory = {shortId:req.params.shortId, timeStamp : Date.now()}
     await URL.findOneAndUpdate({ shortId }, {
         $push: {
