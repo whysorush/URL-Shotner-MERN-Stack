@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const port = 8001;
 const urlRoute = require('./routes/url');
+const middlewareRoute = require('./routes/middlewear');
+
 const { connectDb } = require('./connection');
 const URL = require('./models/url')
 
@@ -21,24 +23,25 @@ app.get('/healthCheck',async (req,res)=>{
     console.log(data)
     return res.end("Site Works");
 })
-app.get('/:shortId', async (req, res) => {
-    console.log('This is a middleware layer!', req.url);
-    const shortId = req.params.shortId;
-    console.log(shortId)
-    // const entry = 
-    let visitHistory = {shortId:req.params.shortId, timeStamp : Date.now()}
-    await URL.findOneAndUpdate({ shortId, }, {
-        $push: {
-            visitHistory: visitHistory,
-        },upsert:true,  
-        $inc:{
-            clicks:1
-        }
-    }).then(entry=>{
-        return res.redirect(entry.redirectURL)
-    })
+app.use('/',middlewareRoute );
+// app.get('/:shortId', async (req, res) => {
+//     console.log('This is a middleware layer!', req.url);
+//     const shortId = req.params.shortId;
+//     console.log(shortId)
+//     // const entry = 
+//     let visitHistory = {shortId:req.params.shortId, timeStamp : Date.now()}
+//     await URL.findOneAndUpdate({ shortId, }, {
+//         $push: {
+//             visitHistory: visitHistory,
+//         },upsert:true,  
+//         $inc:{
+//             clicks:1
+//         }
+//     }).then(entry=>{
+//         return res.redirect(entry.redirectURL)
+//     })
     
-})
+// })
 app.use("/url", urlRoute);
 
 
