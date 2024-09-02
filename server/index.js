@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const cors = require('cors');
 const port = 8001;
 const urlRoute = require('./routes/url');
 const middlewareRoute = require('./routes/middlewear');
@@ -11,6 +12,7 @@ connectDb("mongodb://127.0.0.1:27017/shortUrl").then(() => {
     console.log("Mongo connected")
 });
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
